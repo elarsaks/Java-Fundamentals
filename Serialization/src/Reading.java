@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class Reading {
 	
@@ -12,13 +13,20 @@ public class Reading {
 			
 			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
 			
-			Vehicle vehicle1 = (Vehicle)objectInput.readObject();
-			Vehicle vehicle2 = (Vehicle)objectInput.readObject();
+			Vehicle[] vehicle = (Vehicle[])objectInput.readObject();
+			ArrayList<Vehicle> vehicleList = (ArrayList<Vehicle>)objectInput.readObject();
+			
+			for(Vehicle myVehicles: vehicleList) {
+				System.out.println(myVehicles);
+			}
+			
+			// Commented out code is from previous lecture
+			// Vehicle vehicle1 = (Vehicle)objectInput.readObject();
+			// Vehicle vehicle2 = (Vehicle)objectInput.readObject();
 			
 			objectInput.close();
-			
-			System.out.println(vehicle1);
-			System.out.println(vehicle2);
+			//System.out.println(vehicle1);
+			//System.out.println(vehicle2);
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
